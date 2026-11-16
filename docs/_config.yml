@@ -1,0 +1,39 @@
+# GitHub Pages / Jekyll configuration for the FlowCatalyst documentation site. There is no build
+# step of our own: Pages builds plain Markdown with the layout in _layouts/ and the one stylesheet
+# in assets/css/docs.css (the FlowCatalyst UI kit's design tokens, copied in as plain CSS).
+# Navigation lives in _data/nav.yml. Pages is not enabled by this file.
+title: FlowCatalyst
+description: Documentation for FlowCatalyst, a multi-tenant event router and webhook delivery platform.
+
+# PLACEHOLDERS: set these once the hosting target is decided.
+#   - url + baseurl: where this docs/ folder is published. If the landing page (../index.html) is
+#     served at https://example.org/ and this site beside it, baseurl is "/docs". For a GitHub
+#     project page it would be "/<repo>/docs". Every link in the layout goes through the
+#     relative_url filter, so changing baseurl is the only edit needed.
+#   - home_url: the landing page, as a path or absolute URL (it lives outside this Jekyll site).
+url: https://flowcatalyst.tech
+baseurl: /docs
+home_url: /
+github_url: https://github.com/flowcatalyst/flowcatalyst
+
+# Render Markdown files that have no YAML front matter and turn links between .md files into
+# working page links. Both plugins are on the GitHub Pages allow-list. Page titles come from
+# _data/nav.yml (see the layout).
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: false
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Not pages.
+exclude:
+  - verify.sh
+  - README.md

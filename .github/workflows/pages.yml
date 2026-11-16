@@ -1,0 +1,53 @@
+name: Deploy site
+
+# Builds docs/ with Jekyll into /docs/ of the published site and puts the landing page
+# (index.html, logopack/) and the custom-domain CNAME beside it, then deploys to GitHub Pages.
+# One-time setup in the repository: Settings > Pages > Build and deployment > Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify docs
+        run: sh docs/verify.sh
+
+      - name: Build docs with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site/docs
+
+      - name: Add landing page, assets and custom domain
+        run: |
+          cp index.html _site/index.html
+          cp -R logopack _site/logopack
+          cp CNAME _site/CNAME
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
