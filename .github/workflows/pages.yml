@@ -35,6 +35,8 @@ jobs:
 
       - name: Add landing page, assets and custom domain
         run: |
+          # The Jekyll action runs in a container and leaves _site/ owned by root.
+          sudo chown -R "$(id -u):$(id -g)" _site
           cp index.html _site/index.html
           cp -R logopack _site/logopack
           cp CNAME _site/CNAME
