@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowCatalyst - Platform Foundation for Event-Driven Applications</title>
-    <meta name="description" content="FlowCatalyst is an all-in-one control plane with built-in identity, multi-tenant architecture, and reliable event delivery. One binary. Everything you need.">
+    <meta name="description" content="FlowCatalyst is an open source, multi-tenant event router and webhook delivery platform with a built-in OAuth2/OIDC identity provider, scheduled jobs, functions and SDKs. PostgreSQL is the only required dependency.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -62,20 +62,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <div class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    Coming February 1, 2026
+                    Open source &middot; Apache 2.0
                 </div>
                 <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
                     Platform for Business Orientated<br>Event-Driven Applications
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
-                    FlowCatalyst provides the foundation for building business to business applications, including client management, user management, roles, identity provider federation with an OIDC server, event types, subscriptions, dispatch jobs all managed from a central management hub with SDKs so applications can easily sync their roles, event types, subscriptions and make use of shared platform services like notifications all optimised for high throughput and rich querying capability.
+                    FlowCatalyst is a multi-tenant event router and webhook delivery platform. Your applications publish a business event once. FlowCatalyst matches it to subscriptions, delivers it as a signed webhook, retries failures, rate-limits and orders deliveries, and gives operators one console to watch and intervene. Around that core it provides the identity your applications share: an OAuth2/OIDC provider with federated login, roles and permissions, and service accounts.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <a href="#getting-started" class="bg-primary text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors">
                         Get Started
                     </a>
-                    <a href="#features" class="border border-primary text-primary px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary hover:text-white transition-colors">
-                        See Features
+                    <a href="docs/" class="border border-primary text-primary px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary hover:text-white transition-colors">
+                        Read the Docs
                     </a>
                 </div>
             </div>
@@ -90,33 +90,41 @@
                     One Binary. Everything Included.
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    No Kafka. No Zookeeper. No separate identity service. Developer mode includes an embedded message broker. Production supports AWS SQS, NATS, or ActiveMQ Classic.
+                    No Kafka. No Zookeeper. No separate identity service. PostgreSQL is the only required dependency: the dispatch queue runs on it by default, or on AWS SQS FIFO. <code class="bg-gray-100 px-1 rounded">fcdev</code> runs everything locally in one process with an embedded PostgreSQL, and <code class="bg-gray-100 px-1 rounded">fc-server</code> runs the same subsystems in production.
                 </p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="text-primary font-semibold">Platform APIs</div>
-                    <div class="text-sm text-gray-500">REST endpoints</div>
+                    <div class="text-primary font-semibold">Platform API</div>
+                    <div class="text-sm text-gray-500">REST, OIDC and web console</div>
                 </div>
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="text-primary font-semibold">Admin UI</div>
-                    <div class="text-sm text-gray-500">Control plane</div>
+                    <div class="text-primary font-semibold">Stream Processor</div>
+                    <div class="text-sm text-gray-500">Matches subscriptions</div>
                 </div>
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="text-primary font-semibold">Event Processor</div>
-                    <div class="text-sm text-gray-500">Stream processing</div>
+                    <div class="text-primary font-semibold">Dispatch Scheduler</div>
+                    <div class="text-sm text-gray-500">Claims and queues jobs</div>
                 </div>
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="text-primary font-semibold">Message Router</div>
-                    <div class="text-sm text-gray-500">15-25K msg/sec</div>
+                    <div class="text-primary font-semibold">Router</div>
+                    <div class="text-sm text-gray-500">Pool limits and ordering</div>
                 </div>
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="text-primary font-semibold">Outbox Scheduler</div>
-                    <div class="text-sm text-gray-500">Reliable delivery</div>
+                    <div class="text-primary font-semibold">Outbox Processor</div>
+                    <div class="text-sm text-gray-500">Transactional publishing</div>
                 </div>
                 <div class="bg-gray-50 p-4 rounded-lg">
-                    <div class="text-primary font-semibold">OIDC Server</div>
-                    <div class="text-sm text-gray-500">Built-in identity</div>
+                    <div class="text-primary font-semibold">Scheduled Jobs</div>
+                    <div class="text-sm text-gray-500">Cron with locking</div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="text-primary font-semibold">Functions Runner</div>
+                    <div class="text-sm text-gray-500">WebAssembly sandbox</div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="text-primary font-semibold">MCP Server</div>
+                    <div class="text-sm text-gray-500">Read-only, for AI assistants</div>
                 </div>
             </div>
         </div>
@@ -142,7 +150,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Developer Friendly Deployment</h3>
-                    <p class="text-gray-600">Message router, event processor, outbox scheduler, and platform APIs in a single binary or docker compose. No complex orchestration required.</p>
+                    <p class="text-gray-600">fcdev runs the whole platform locally in one process with an embedded PostgreSQL: no Docker and no queue service. In production, fc-server is one binary whose subsystems you switch on with environment variables.</p>
                 </div>
                 <!-- Feature 2: Multi-Client -->
                 <div class="bg-white p-8 rounded-xl shadow-sm border">
@@ -152,7 +160,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Multi-Client Architecture</h3>
-                    <p class="text-gray-600">Built for SaaS with client-level isolation, scoped resources, and per-client configuration. Works seamlessly with or without multi-tenancy.</p>
+                    <p class="text-gray-600">Clients are tenants. Events, subscriptions, dispatch pools and users can be scoped to a client, and a client-scoped user never sees another client's data. Three tiers cover platform staff, partners and tenants.</p>
                 </div>
                 <!-- Feature 3: OIDC -->
                 <div class="bg-white p-8 rounded-xl shadow-sm border">
@@ -161,8 +169,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Built-in OIDC Server</h3>
-                    <p class="text-gray-600">Full identity server with federation to Microsoft Entra, Keycloak, and other OIDC providers. Service accounts with client credentials flow included.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Built-in OIDC Provider</h3>
+                    <p class="text-gray-600">A full OAuth2/OIDC provider with federation to Microsoft Entra, Google, or any standards-compliant OIDC provider. Passkeys, two-factor authentication, and service accounts with the client credentials grant.</p>
                 </div>
                 <!-- Feature 4: Control Plane -->
                 <div class="bg-white p-8 rounded-xl shadow-sm border">
@@ -172,7 +180,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Centralized Control Plane</h3>
-                    <p class="text-gray-600">Manage applications, users, roles, event types, subscriptions, and dispatch jobs from one UI. Complete audit trail for every action.</p>
+                    <p class="text-gray-600">Manage applications, users, roles, event types, subscriptions, dispatch jobs, scheduled jobs and functions from one web console, with an audit log of every administrative action.</p>
                 </div>
                 <!-- Feature 5: Event Delivery -->
                 <div class="bg-white p-8 rounded-xl shadow-sm border">
@@ -182,7 +190,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Reliable Event Delivery</h3>
-                    <p class="text-gray-600">CloudEvents-compliant with FIFO ordering, automatic retries, rate limiting pools, and HMAC-SHA256 webhook signing for secure delivery.</p>
+                    <p class="text-gray-600">At-least-once delivery with ordering within a message group, automatic retries with backoff, dispatch pools that cap concurrency and rate, and HMAC-SHA256 signed webhooks.</p>
                 </div>
                 <!-- Feature 6: Observability -->
                 <div class="bg-white p-8 rounded-xl shadow-sm border">
@@ -193,7 +201,37 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Maximum Observability</h3>
-                    <p class="text-gray-600">Filter and search events and dispatch jobs, replay failed deliveries, and remediate data issues directly from the UI. Full visibility into your event pipeline.</p>
+                    <p class="text-gray-600">Filter events and dispatch jobs, read every delivery attempt, and requeue, cancel or complete failed jobs from the console. Prometheus metrics and a router dashboard are built in.</p>
+                </div>
+                <!-- Feature 7: Outbox and SDKs -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">SDKs and Transactional Outbox</h3>
+                    <p class="text-gray-600">SDKs for TypeScript, Laravel, Java and Go write events inside your own database transaction, sync your event types, subscriptions and roles from code, and verify webhook signatures.</p>
+                </div>
+                <!-- Feature 8: Scheduled Jobs -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Scheduled Jobs</h3>
+                    <p class="text-gray-600">Cron-driven jobs delivered as signed requests, with locking so exactly one instance fires each tick, manual firing, and a history and log for every run.</p>
+                </div>
+                <!-- Feature 9: Functions -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Functions</h3>
+                    <p class="text-gray-600">Small programs in Go, Rust or TypeScript that the platform stores, versions and runs in a WebAssembly sandbox, wired to events, schedules and HTTP with no server of yours to run.</p>
                 </div>
             </div>
         </div>
@@ -208,38 +246,44 @@
                         Identity Built In
                     </h2>
                     <p class="text-lg text-gray-600 mb-8">
-                        FlowCatalyst includes a complete OIDC-compliant identity server. No need for a separate Keycloak or Auth0 deployment.
+                        FlowCatalyst is a full OAuth2/OIDC provider. Your applications never store credentials or run login screens, and you do not need a separate Keycloak or Auth0 deployment.
                     </p>
                     <ul class="space-y-4">
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Federation</strong> with Microsoft Entra, Keycloak, Okta, and any OIDC provider</span>
+                            <span class="text-gray-700"><strong>Federation</strong> with Microsoft Entra, Google, and any standards-compliant OIDC provider</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Service accounts</strong> with client credentials flow for machine-to-machine auth</span>
+                            <span class="text-gray-700"><strong>Passkeys and two-factor authentication</strong> with authenticator apps or email PINs, and recovery codes</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Per-domain authentication</strong> configuration for flexible auth routing</span>
+                            <span class="text-gray-700"><strong>Service accounts</strong> with the client credentials grant for machine-to-machine auth</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Role-based access control</strong> with fine-grained permissions</span>
+                            <span class="text-gray-700"><strong>Per-domain sign-in</strong> that routes each email domain to its identity provider or to password login</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Three user scopes:</strong> Anchor (platform admin), Partner (multi-client), Client (single tenant)</span>
+                            <span class="text-gray-700"><strong>Role-based access control</strong> with four-segment permissions, delegable to a client's own administrators</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700"><strong>Three tiers:</strong> Anchor (platform staff, every client), Partner (a set of clients), Client (exactly one tenant)</span>
                         </li>
                     </ul>
                 </div>
@@ -260,7 +304,7 @@
                         </div>
                         <div class="flex items-center">
                             <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium mr-3">4</span>
-                            <span>Return with FlowCatalyst session token</span>
+                            <span>FlowCatalyst issues tokens to your application</span>
                         </div>
                         <div class="flex items-center">
                             <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium mr-3">5</span>
@@ -285,22 +329,22 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Status:</span>
-                            <span class="text-yellow-400">ERROR</span>
+                            <span class="text-red-400">FAILED</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Attempts:</span>
-                            <span class="text-white">3 / 5</span>
+                            <span class="text-white">3 / 3</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Last Error:</span>
-                            <span class="text-red-400">Connection timeout</span>
+                            <span class="text-red-400">Connection error</span>
                         </div>
                         <div class="border-t border-gray-700 pt-3 mt-3">
                             <div class="text-gray-400 mb-2">Actions:</div>
                             <div class="flex gap-2">
-                                <span class="bg-blue-600 text-white px-3 py-1 rounded text-xs cursor-pointer hover:bg-blue-700">Retry Now</span>
-                                <span class="bg-green-600 text-white px-3 py-1 rounded text-xs cursor-pointer hover:bg-green-700">Mark Complete</span>
-                                <span class="bg-gray-600 text-white px-3 py-1 rounded text-xs cursor-pointer hover:bg-gray-700">View Event</span>
+                                <span class="bg-blue-600 text-white px-3 py-1 rounded text-xs cursor-pointer hover:bg-blue-700">Requeue</span>
+                                <span class="bg-green-600 text-white px-3 py-1 rounded text-xs cursor-pointer hover:bg-green-700">Complete</span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded text-xs cursor-pointer hover:bg-gray-700">Cancel</span>
                             </div>
                         </div>
                     </div>
@@ -317,25 +361,25 @@
                             <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Search & filter</strong> events and dispatch jobs by any criteria</span>
+                            <span class="text-gray-700"><strong>Search &amp; filter</strong> events and dispatch jobs by application, event type, status, client, message group and time range</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Event replay</strong> to reprocess failed or missed deliveries</span>
+                            <span class="text-gray-700"><strong>Requeue</strong> failed deliveries, one job at a time or in bulk, with a full retry budget</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Remediate issues</strong> directly from the UI - correct data, retry jobs, mark complete</span>
+                            <span class="text-gray-700"><strong>Resolve failures</strong> from the console: read every attempt, then requeue, cancel or mark the job complete</span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
                             </svg>
-                            <span class="text-gray-700"><strong>Full audit trail</strong> of every change, every action, every state transition</span>
+                            <span class="text-gray-700"><strong>Audit log and login attempts</strong> record every administrative action and every sign-in, human or machine</span>
                         </li>
                     </ul>
                 </div>
@@ -351,10 +395,10 @@
                     Developer Friendly. Production Ready.
                 </h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Get the entire platform running in seconds. No complex setup required.
+                    Get the entire platform running on your machine in a few minutes. No Docker, no queue service, no Redis.
                 </p>
             </div>
-            <div class="max-w-3xl mx-auto">
+            <div class="max-w-4xl mx-auto">
                 <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden">
                     <div class="flex items-center px-4 py-3 bg-gray-800">
                         <div class="flex space-x-2">
@@ -364,26 +408,36 @@
                         </div>
                         <span class="ml-4 text-gray-400 text-sm">terminal</span>
                     </div>
-                    <div class="p-6 font-mono text-sm">
-                        <div class="text-gray-400 mb-4"># Option 1: Native Binary</div>
-                        <div class="text-green-400 mb-6">$ ./flowcatalyst</div>
+                    <div class="p-6 font-mono text-sm overflow-x-auto">
+                        <div class="text-gray-400 mb-2 whitespace-nowrap"># Install fcdev on macOS or Linux</div>
+                        <div class="text-green-400 mb-6 whitespace-nowrap">$ curl -fsSL https://raw.githubusercontent.com/flowcatalyst/flowcatalyst/main/install.sh | sh</div>
 
-                        <div class="text-gray-400 mb-4"># Option 2: Docker Compose</div>
-                        <div class="text-green-400 mb-6">$ docker compose up -d</div>
+                        <div class="text-gray-400 mb-2 whitespace-nowrap"># Or on Windows (PowerShell)</div>
+                        <div class="text-green-400 mb-6 whitespace-nowrap">&gt; irm https://raw.githubusercontent.com/flowcatalyst/flowcatalyst/main/install.ps1 | iex</div>
 
-                        <div class="text-gray-400 mb-4"># Option 3: Java JAR</div>
-                        <div class="text-green-400 mb-6">$ java -jar flowcatalyst.jar</div>
+                        <div class="text-gray-400 mb-2 whitespace-nowrap"># Start the platform, then open http://localhost:8080</div>
+                        <div class="text-green-400 mb-6">$ fcdev</div>
 
-                        <div class="text-gray-400 mb-2"># That's it. You now have:</div>
+                        <div class="text-gray-400 mb-2"># That's it. One process, running:</div>
                         <div class="text-gray-300 space-y-1 ml-2">
-                            <div><span class="text-green-400">&#10003;</span> Platform APIs</div>
-                            <div><span class="text-green-400">&#10003;</span> Event Processor</div>
-                            <div><span class="text-green-400">&#10003;</span> Message Router</div>
-                            <div><span class="text-green-400">&#10003;</span> Outbox Scheduler</div>
-                            <div><span class="text-green-400">&#10003;</span> Admin UI</div>
-                            <div><span class="text-green-400">&#10003;</span> OIDC Server</div>
+                            <div><span class="text-green-400">&#10003;</span> Platform API and web console</div>
+                            <div><span class="text-green-400">&#10003;</span> OAuth2/OIDC provider</div>
+                            <div><span class="text-green-400">&#10003;</span> Stream processor</div>
+                            <div><span class="text-green-400">&#10003;</span> Dispatch scheduler</div>
+                            <div><span class="text-green-400">&#10003;</span> Router</div>
+                            <div><span class="text-green-400">&#10003;</span> Scheduled jobs</div>
+                            <div><span class="text-green-400">&#10003;</span> Function runner</div>
+                            <div><span class="text-green-400">&#10003;</span> Embedded PostgreSQL</div>
                         </div>
                     </div>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+                    <a href="docs/get-started/quick-start.html" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        Quick Start Guide
+                    </a>
+                    <a href="docs/get-started/first-event.html" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors">
+                        Publish Your First Event
+                    </a>
                 </div>
             </div>
         </div>
@@ -401,36 +455,36 @@
                 </p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-orange-50 p-8 rounded-xl border border-orange-200 text-center">
-                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">AWS</h3>
-                    <p class="text-gray-600 text-sm">Deploy with SQS for message queuing, DocumentDB or MongoDB Atlas, and ECS or EKS for compute</p>
-                </div>
-                <div class="bg-blue-50 p-8 rounded-xl border border-blue-200 text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">GCP</h3>
-                    <p class="text-gray-600 text-sm">Run on Cloud Run or GKE with MongoDB Atlas and ActiveMQ or Pub/Sub integration</p>
-                </div>
                 <div class="bg-gray-50 p-8 rounded-xl border border-gray-200 text-center">
                     <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Docker Compose</h3>
-                    <p class="text-gray-600 text-sm">Get started locally or on any server with a simple docker compose setup including MongoDB and ActiveMQ / NATS</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">One Instance</h3>
+                    <p class="text-gray-600 text-sm">Run a single fc-server with every subsystem switched on. It needs nothing but a PostgreSQL database, with no extensions</p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-xl border border-blue-200 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Split Tiers</h3>
+                    <p class="text-gray-600 text-sm">Run the API, workers, router and function runner as separate instances of the same image, and scale each on its own</p>
+                </div>
+                <div class="bg-orange-50 p-8 rounded-xl border border-orange-200 text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">High Availability</h3>
+                    <p class="text-gray-600 text-sm">Run two or more instances with Redis leader election, and move the dispatch queue to AWS SQS FIFO when you want it off the database</p>
                 </div>
             </div>
             <div class="text-center mt-8">
-                <p class="text-gray-500 text-sm">Message broker support: AWS SQS, NATS, ActiveMQ Classic. <span class="text-primary font-medium">Google Pub/Sub coming soon.</span></p>
+                <p class="text-gray-500 text-sm">Dispatch queue: the built-in PostgreSQL broker or AWS SQS FIFO. A Dockerfile and an example Docker Compose stack ship in the repository. <a href="docs/operate/deployment.html" class="text-primary font-medium hover:underline">Read the deployment guide.</a></p>
             </div>
         </div>
     </section>
@@ -446,6 +500,27 @@
                     A centralized control plane for applications, users, events, and operations.
                 </p>
             </div>
+            <div class="bg-white p-6 rounded-lg border shadow-sm mb-6">
+                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide text-center mb-4">The path of an event</div>
+                <div class="flex flex-wrap justify-center items-center gap-2 text-sm font-medium">
+                    <span class="bg-gray-100 text-gray-800 px-3 py-2 rounded">Your application</span>
+                    <span class="text-gray-400">&rarr;</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-2 rounded">Platform API</span>
+                    <span class="text-gray-400">&rarr;</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-2 rounded">Stream processor</span>
+                    <span class="text-gray-400">&rarr;</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-2 rounded">Dispatch scheduler</span>
+                    <span class="text-gray-400">&rarr;</span>
+                    <span class="bg-amber-100 text-amber-800 px-3 py-2 rounded">Queue</span>
+                    <span class="text-gray-400">&rarr;</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-2 rounded">Router</span>
+                    <span class="text-gray-400">&rarr;</span>
+                    <span class="bg-gray-100 text-gray-800 px-3 py-2 rounded">Your endpoint</span>
+                </div>
+                <p class="text-sm text-gray-600 text-center mt-4 max-w-4xl mx-auto">
+                    Your application publishes an event, usually through the SDK's transactional outbox. The stream processor creates one dispatch job for each matching subscription, the scheduler queues it on PostgreSQL or SQS FIFO, and the router applies each pool's concurrency, rate limit and ordering before the platform signs and delivers the webhook. All state lives in PostgreSQL.
+                </p>
+            </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-lg border shadow-sm">
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
@@ -456,7 +531,7 @@
                         </span>
                         Applications
                     </h4>
-                    <p class="text-sm text-gray-600">Register applications, define roles, and manage user-application associations</p>
+                    <p class="text-sm text-gray-600">Register the systems that publish and consume events. Each declares its event types, subscriptions and roles in code and syncs them on deploy</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg border shadow-sm">
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
@@ -467,7 +542,7 @@
                         </span>
                         Event Types
                     </h4>
-                    <p class="text-sm text-gray-600">Define event schemas with versioning, validation, and documentation</p>
+                    <p class="text-sm text-gray-600">Four-part codes with a JSON Schema and versions, used to route events and to filter them in the console</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg border shadow-sm">
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
@@ -478,7 +553,7 @@
                         </span>
                         Subscriptions
                     </h4>
-                    <p class="text-sm text-gray-600">Route events to target endpoints with FIFO ordering and rate limiting</p>
+                    <p class="text-sm text-gray-600">Bind event types to an endpoint, with an ordering mode, retries, a timeout and a dispatch pool</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg border shadow-sm">
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
@@ -489,7 +564,7 @@
                         </span>
                         Users & Roles
                     </h4>
-                    <p class="text-sm text-gray-600">Role-based access control with fine-grained permissions and audit</p>
+                    <p class="text-sm text-gray-600">Role-based access control with four-segment permissions, delegable to a client's own administrators</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg border shadow-sm">
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
@@ -500,7 +575,7 @@
                         </span>
                         Clients
                     </h4>
-                    <p class="text-sm text-gray-600">Multi-tenant client management with scoped resources and isolation</p>
+                    <p class="text-sm text-gray-600">Tenants with their own users, scoped events and subscriptions, and the applications they are entitled to</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg border shadow-sm">
                     <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
@@ -511,7 +586,40 @@
                         </span>
                         Dispatch Jobs
                     </h4>
-                    <p class="text-sm text-gray-600">Monitor delivery, view attempt history, replay and remediate failures</p>
+                    <p class="text-sm text-gray-600">One delivery each: watch its status, read every attempt, then requeue, cancel or complete it</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border shadow-sm">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-rose-100 text-rose-600 rounded flex items-center justify-center mr-3 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                            </svg>
+                        </span>
+                        Dispatch Pools
+                    </h4>
+                    <p class="text-sm text-gray-600">Delivery budgets that cap concurrency and rate, so one slow or flooded consumer cannot starve the rest</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border shadow-sm">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-cyan-100 text-cyan-600 rounded flex items-center justify-center mr-3 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </span>
+                        Scheduled Jobs
+                    </h4>
+                    <p class="text-sm text-gray-600">Pause, resume and fire jobs by hand, and inspect every run and its log</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border shadow-sm">
+                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-slate-100 text-slate-600 rounded flex items-center justify-center mr-3 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </span>
+                        Audit Log
+                    </h4>
+                    <p class="text-sm text-gray-600">Every administrative action and every login attempt, success or failure, human or machine</p>
                 </div>
             </div>
         </div>
@@ -551,7 +659,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold text-gray-900 mb-2">Webhook Providers</h3>
-                    <p class="text-sm text-gray-600">Offer webhooks to your customers with per-tenant rate limiting</p>
+                    <p class="text-sm text-gray-600">Offer signed webhooks to your customers with per-client delivery pools and rate limits</p>
                 </div>
                 <div class="text-center p-6">
                     <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -560,7 +668,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold text-gray-900 mb-2">Event-Driven Architecture</h3>
-                    <p class="text-sm text-gray-600">CloudEvents infrastructure with ordering guarantees</p>
+                    <p class="text-sm text-gray-600">At-least-once delivery with ordering within a message group</p>
                 </div>
             </div>
         </div>
@@ -584,7 +692,7 @@
                     <div>
                         <h3 class="text-2xl font-semibold text-gray-900 mb-4">Open Source</h3>
                         <p class="text-gray-600 mb-6">
-                            FlowCatalyst is open source and designed for transparency.
+                            FlowCatalyst is open source under the Apache 2.0 license.
                             Run it on your infrastructure, customize it to your needs,
                             and never worry about vendor lock-in.
                         </p>
@@ -612,7 +720,7 @@
                 <div>
                     <img src="logopack/logo-horizontal-transparent-bw.png" alt="FlowCatalyst" class="h-8 mb-4 filter brightness-0 invert">
                     <p class="text-gray-300 mb-4">
-                        The platform foundation for event-driven applications. Identity, events, and webhooks in one binary.
+                        The platform foundation for event-driven applications. Events, webhooks and identity on one platform.
                     </p>
                 </div>
                 <div>
@@ -629,12 +737,10 @@
                     <ul class="space-y-2 text-gray-300">
                         <li><a href="https://github.com/flowcatalyst/flowcatalyst" target="_blank" class="hover:text-white transition-colors">GitHub</a></li>
                         <li><a href="docs/" class="hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="https://github.com/flowcatalyst/flowcatalyst/releases" target="_blank" class="hover:text-white transition-colors">Releases</a></li>
                         <li><a href="https://github.com/flowcatalyst/flowcatalyst/issues" target="_blank" class="hover:text-white transition-colors">Issues</a></li>
                         <li><a href="mailto:andrew@belac.io" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
-                    <p class="text-gray-400 text-sm mt-4">
-                        Coming February 1, 2026
-                    </p>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
